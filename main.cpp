@@ -1,4 +1,5 @@
 #include <Novice.h>
+#include"Matrix.h"
 
 const char kWindowTitle[] = "LE2A_09_セト_ダイヤ";
 
@@ -11,6 +12,16 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	// キー入力結果を受け取る箱
 	char keys[256] = {0};
 	char preKeys[256] = {0};
+
+	Vec3 translate = { 4.1f,2.6f,0.8f };
+	Vec3 scale = { 1.5f,5.2f,7.3f };
+	Vec3 point = { 2.3f,3.8f,1.4f };
+	Matrix44 transformMatrix = {
+		1.0f,2.0f,3.0f,4.0f,
+		3.0f,1.0f,1.0f,2.0f,
+		1.0f,4.0f,2.0f,3.0f,
+		2.0f,2.0f,1.0f,3.0f
+	};
 
 	// ウィンドウの×ボタンが押されるまでループ
 	while (Novice::ProcessMessage() == 0) {
@@ -25,6 +36,10 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		/// ↓更新処理ここから
 		///
 
+		Matrix44 translateMatrix = MakeTranslateMatrix(translate);
+		Matrix44 scaleMatrix = makeScaleMatrix(scale);
+		Vec3 transformed = Transform(point, transformMatrix);
+
 		///
 		/// ↑更新処理ここまで
 		///
@@ -32,6 +47,10 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		///
 		/// ↓描画処理ここから
 		///
+
+		VectorScreenPrintf(0, 0, transformed, "transformed");
+		MatrixScreenPrintf(0, kRowHeight, translateMatrix, "translateMatrix");
+		MatrixScreenPrintf(0, kRowHeight + kRowHeight * 5, scaleMatrix, "scaleMatrix");
 
 		///
 		/// ↑描画処理ここまで
