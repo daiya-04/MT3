@@ -1,4 +1,8 @@
 #include <Novice.h>
+#include "Vec3.h"
+#include "Matrix44.h"
+#include "Draw.h"
+#include "Hit.h"
 
 const char kWindowTitle[] = "LE2A_09_セト_ダイヤ";
 
