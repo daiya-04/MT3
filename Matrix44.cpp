@@ -260,8 +260,8 @@ void DrawGrid(const Matrix44& viewProjectionMatrix, const Matrix44& viewportMatr
 
 void DrawSphere(const Sphere& sphere, const Matrix44& viewProjectionMatrix, const Matrix44& viewportMatrix, uint32_t color) {
 	const uint32_t kSubdivision = 32;                    //分割数
-	const float kLonEvery = float(M_PI) / kSubdivision;         //経度分割1つ分の角度
-	const float kLatEvery = 2.0f * float(M_PI) / kSubdivision;  //緯度分割1つ分の角度
+	const float kLonEvery = 2.0f * float(M_PI) / float(kSubdivision);   //経度分割1つ分の角度
+	const float kLatEvery = float(M_PI) / float(kSubdivision);  //緯度分割1つ分の角度
 	//緯度の方向に分割　-π/2~π/2
 	for (uint32_t latIndex = 0; latIndex < kSubdivision; ++latIndex) {
 		float lat = -float(M_PI) / 2.0f + kLatEvery * latIndex; //θ
