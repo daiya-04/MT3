@@ -1,9 +1,11 @@
-#pragma once
+ï»¿#pragma once
 #include "Vec3.h"
 #include "Matrix44.h"
 #include "Draw.h"
 
 typedef struct {
-	Vec3 origin; //n“_
-	Vec3 diff;   //I“_‚Æ‚Ì·•ªƒxƒNƒgƒ‹
+	Vec3 origin; //å§‹ç‚¹
+	Vec3 diff;   //çµ‚ç‚¹ã¨ã®å·®åˆ†ãƒ™ã‚¯ãƒˆãƒ«
 }Segment;
+
+Vec3 ClosestPoint(const Vec3& point, const Segment& segment);

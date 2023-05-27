@@ -18,3 +18,4 @@ Vec3 Inverse(const Vec3& v);
 float Lerp(float t, float start, float end);
 Vec3 Lerp(float t, const Vec3& start, const Vec3& end);
 float Clamp(float value, float min = 0.0f, float max = 1.0f);
+Vec3 Project(const Vec3& v1, const Vec3& v2);

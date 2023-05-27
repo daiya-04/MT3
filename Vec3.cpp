@@ -1,5 +1,5 @@
-#include"Vec3.h"
-#include<math.h>
+﻿#include"Vec3.h"
+#include<cmath>
 #include<Novice.h>
 
 
@@ -37,11 +37,11 @@ Vec3 Inverse(const Vec3& v) {
 }
 
 float Clamp(float value, float min, float max) {
-	if (value <= 0.0f) {
-		return 0.0f;
+	if (value <= min) {
+		return min;
 	}
-	if (value >= 1.0f) {
-		return 1.0f;
+	if (value >= max) {
+		return max;
 	}
 	return value;
 }
@@ -55,3 +55,11 @@ Vec3 Lerp(float t, const Vec3& start, const Vec3& end) {
 	return{ Lerp(t,start.x,end.x),Lerp(t,start.y,end.y),Lerp(t,start.z,end.z) };
 }
 
+Vec3 Project(const Vec3& v1, const Vec3& v2) {
+	
+	float t = Dot(v1, v2) / std::powf(Length(v2), 2);
+
+	t = Clamp(t);
+
+	return Mul(t, v2);
+}
