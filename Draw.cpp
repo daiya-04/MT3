@@ -97,6 +97,21 @@ void DrawPlane(const Plane& plane, const Matrix44& viewProjectionMatrix, const M
 	Novice::DrawLine((int)points[3].x, (int)points[3].y, (int)points[0].x, (int)points[0].y, color);
 }
 
+void DrawTriangle(const Triangle& triangle, const Matrix44& viewProjectionMatrix, const Matrix44& viewportMatrix, uint32_t color) {
+
+	Vec3 vertices[3];
+	for (uint32_t i = 0; i < 3; i++) {
+		vertices[i] = Transform(triangle.vertices[i], Multiply(viewProjectionMatrix, viewportMatrix));
+	}
+
+	Novice::DrawTriangle(
+		(int)vertices[0].x, (int)vertices[0].y,
+		(int)vertices[1].x, (int)vertices[1].y,
+		(int)vertices[2].x, (int)vertices[2].y,
+		color, kFillModeWireFrame);
+
+}
+
 void MatrixScreenPrintf(int x, int y, const Matrix44& matrix, const char* label) {
 	Novice::ScreenPrintf(x, y, "%s", label);
 	for (int row = 0; row < kMatrixNum; ++row) {
