@@ -45,3 +45,34 @@ bool IsCollision(const Segment& segment, const Plane& plane) {
 	}
 	return false;
 }
+
+bool IsCollision(const Line& line, const Plane& plane) {
+	Vec3 end = Add(line.origin, line.diff);
+
+	float dot = Dot(plane.normal, end);
+
+	if (dot == 0.0f) {
+		return false;
+	}
+
+	//float t = (plane.distance - Dot(line.origin, plane.normal)) / dot;
+
+	return true;
+}
+
+bool IsCollision(const Ray& ray, const Plane& plane) {
+	Vec3 end = Add(ray.origin, ray.diff);
+
+	float dot = Dot(plane.normal, end);
+
+	if (dot == 0.0f) {
+		return false;
+	}
+
+	float t = (plane.distance - Dot(ray.origin, plane.normal)) / dot;
+
+	if (t >= 0.0f) {
+		return true;
+	}
+	return false;
+}
